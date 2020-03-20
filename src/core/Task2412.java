@@ -75,10 +75,9 @@ public class Task2412 {
 		StringBuilder result = new StringBuilder();
 		for(int i = 0; i < roles.length; i++) {
 			result.append(roles[i] + ":\n");
-			//проходим по второму массиву ищем строки, которые содержат "Роль:", т.е - т.е - roles[i]:
 			for(int j = 0; j < textLines.length; j++) {
-				if(textLines[j].contains(roles[i]) && textLines[j].indexOf(roles[i]) == 0) { //если сторока из массива textLines содержит роль
-					result.append((textLines[j].replace(roles[i] + ":", j + 1 + ")") + "\n"));
+				 if (textLines[j].startsWith(roles[i] + ":")) {
+					 result.append((j+1) + ")" + textLines[j].substring(roles[i].length() + 1) + "\n");
 				}
 			}
 			result.append("\n");
