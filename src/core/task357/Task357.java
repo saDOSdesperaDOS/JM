@@ -7,8 +7,8 @@ public class Task357 {
 	}
 	
 	public Label checkLabels(TextAnalyzer[] analyzers, String text) {
-		for (char c : text.toCharArray()) {
-			c
+		for (TextAnalyzer textAnalyzer : analyzers) {
+			textAnalyzer.processText(text) != Label.OK ? retu ;
 		}
 		return Label.OK;
 	}
