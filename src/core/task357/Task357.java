@@ -7,14 +7,25 @@ public class Task357 {
 	}
 	
 	public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+		for (char c : text.toCharArray()) {
+			c
+		}
 		return Label.OK;
 	}
 	
 	abstract class KeywordAnalyzer  {
 		
 		protected abstract String[] getKeywords();
-		
 		protected abstract Label getLabel();
+		public Label processText(String text) {
+	        String[] keywords = getKeywords();
+	        for (String keyword : keywords) {
+	            if (text.contains(keyword)) {
+	                return getLabel();
+	            }
+	        }
+	        return Label.OK;
+	    }
 	}
 	
 	class SpamAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
@@ -36,47 +47,34 @@ public class Task357 {
 			// TODO Auto-generated method stub
 			return Label.SPAM;
 		}
-		
-		@Override
-		public Label processText(String text) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
 	}
 	
 	class NegativeTextAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
-
+		
+		private final String[] KEYWORDS = {":(", "=(", ":|"};
+		
 		@Override
 		protected String[] getKeywords() {
-			// TODO Auto-generated method stub
-			return null;
+			return KEYWORDS;
 		}
 
 		@Override
 		protected Label getLabel() {
-			// TODO Auto-generated method stub
-			return null;
+			return Label.NEGATIVE_TEXT;
 		}
-		
-		@Override
-		public Label processText(String text) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
 	}
 	
 	class TooLongTextAnalyzer implements TextAnalyzer {
-
-		@Override
-		public Label processText(String text) {
-			// TODO Auto-generated method stub
-			return null;
+		
+		private int maxLength;
+		
+		public TooLongTextAnalyzer(int maxLength) {
+			this.maxLength = maxLength;
 		}
 		
+		@Override
+		public Label processText(String text) {
+			return text.length() > this.maxLength ? Label.TOO_LONG : Label.OK;
+		}
 	}
-	
-	
-
 }
