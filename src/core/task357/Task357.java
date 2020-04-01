@@ -3,20 +3,22 @@ package core.task357;
 public class Task357 {
 
 	public static void main(String[] args) {
-
+    System.out.println("hallo");
 	}
 	
 	public Label checkLabels(TextAnalyzer[] analyzers, String text) {
-		for (TextAnalyzer textAnalyzer : analyzers) {
-			textAnalyzer.processText(text) != Label.OK ? retu ;
-		}
+			for (TextAnalyzer textAnalyzer : analyzers) 
+					if(textAnalyzer.processText(text) != Label.OK)
+							return textAnalyzer.processText(text);
 		return Label.OK;
 	}
 	
-	abstract class KeywordAnalyzer  {
+	public abstract class KeywordAnalyzer implements TextAnalyzer  {
 		
 		protected abstract String[] getKeywords();
 		protected abstract Label getLabel();
+	
+		@Override
 		public Label processText(String text) {
 	        String[] keywords = getKeywords();
 	        for (String keyword : keywords) {
@@ -28,7 +30,7 @@ public class Task357 {
 	    }
 	}
 	
-	class SpamAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
+	public class SpamAnalyzer extends KeywordAnalyzer {
 		
 		private String[] keywords;
 		
@@ -38,18 +40,16 @@ public class Task357 {
 
 		@Override
 		protected String[] getKeywords() {
-			// TODO Auto-generated method stub
 			return keywords;
 		}
 
 		@Override
 		protected Label getLabel() {
-			// TODO Auto-generated method stub
 			return Label.SPAM;
 		}
 	}
 	
-	class NegativeTextAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
+	public class NegativeTextAnalyzer extends KeywordAnalyzer {
 		
 		private final String[] KEYWORDS = {":(", "=(", ":|"};
 		
@@ -64,7 +64,7 @@ public class Task357 {
 		}
 	}
 	
-	class TooLongTextAnalyzer implements TextAnalyzer {
+	public class TooLongTextAnalyzer implements TextAnalyzer {
 		
 		private int maxLength;
 		
