@@ -1,10 +1,16 @@
 package core.task_4_1_7;
 
-public class MyNewException extends Throwable {
+class MyNewException extends Exception {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	String message;
+	
+	public MyNewException(String message) {
+		this.message = message;
+		System.out.println("Greated instance myNewException");
+	}
+	
+	public void myNewExceptionMessage() {
+		System.out.println("Exception message of MyNewException");
 	}
 
 }
