@@ -1,27 +1,14 @@
-import core.Task2411;
-import core.Task2412;
 
 public class MainTest {
  
 	public static void main(String[] args) {
-		String[] roles = new String[]{
-                "Городничий",
-                "Аммос Федорович",
-                "Артемий Филиппович",
-                "Лука Лукич",
-                "KЛука"
-        };
-        String[] textLines = new String[]{
-                "Городничий: Я пригласил вас, господа, с тем, чтобы сообщить вам Городничий: пренеприятное известие: к нам едет ревизор.",
-                "Аммос Федорович: Как ревизор?",
-                "Артемий Филиппович: Как ревизор?",
-                "Городничий: Ревизор из Петербурга, инкогнито. И еще с секретным предписаньем.",
-                "Аммос Федорович: Вот те на!",
-                "Артемий Филиппович: Вот не было заботы, так подай!",
-                "Лука Лукич: Господи боже! Лука Лукич: еще и с секретным предписаньем!"
-        };
-      
-   System.out.println(Task2412.printTextPerRole(roles, textLines));
-     
+		 StackTraceElement[] strElements = Thread.currentThread().getStackTrace();
+		 System.out.println(strElements.length);
+		 for (StackTraceElement stackTraceElement : strElements) {
+			System.out.println(stackTraceElement);
+			System.out.println("внизу stacktraceel.getclass");
+			System.out.println(stackTraceElement.getClassName());
+			System.out.println("один элемент");
+		}
 	}
 }
