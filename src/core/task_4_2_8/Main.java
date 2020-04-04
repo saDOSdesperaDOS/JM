@@ -37,6 +37,18 @@ public class Main {
 
 	}
 	public static void moveRobot(RobotConnectionManager robotConnectionManager, int toX, int toY) {
-	    //Твой код здесь
+		boolean toSendCommand = false;
+	     
+        for (int i = 0; !toSendCommand && (i < 3); ++i) {
+            try (RobotConnection connection = robotConnectionManager.getConnection()) {
+                connection.moveRobotTo(toX, toY);
+                toSendCommand = true;
+            } catch (RobotConnectionException e) {
+                
+            }
+        }//for
+            if (!toSendCommand) {
+                throw new RobotConnectionException("3 attempts connection estabilish failed");
+                }
 	}
 }
