@@ -51,4 +51,23 @@ public class Main {
                 throw new RobotConnectionException("3 attempts connection estabilish failed");
                 }
 	}
+	public interface RobotConnection extends AutoCloseable {
+	    void moveRobotTo(int x, int y);
+	    @Override
+	    void close();
+	}
+	public interface RobotConnectionManager {
+	    RobotConnection getConnection();
+	}
+	public class RobotConnectionException extends RuntimeException {
+
+	    public RobotConnectionException(String message) {
+	        super(message);
+
+	    }
+
+	    public RobotConnectionException(String message, Throwable cause) {
+	        super(message, cause);
+	    }
+	}
 }
